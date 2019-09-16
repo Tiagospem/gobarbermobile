@@ -12,7 +12,7 @@ import {
   SignInLinkText,
 } from './styles';
 
-export default function SignIn() {
+export default function SignIn({ navigation }) {
   return (
     <Background>
       <Container>
@@ -33,7 +33,7 @@ export default function SignIn() {
           />
           <SubmitButton onPress={() => {}}>Acessar</SubmitButton>
         </Form>
-        <SignInLink>
+        <SignInLink onPress={() => navigation.navigate('SignUp')}>
           <SignInLinkText>Criar conta gratuíta</SignInLinkText>
         </SignInLink>
       </Container>
