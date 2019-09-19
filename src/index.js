@@ -17,7 +17,7 @@ import App from './App';
 const Index = () => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <StatusBar barStyle={'light-content'} backgroundColor={'#087480'} />
+      <StatusBar barStyle={'light-content'} backgroundColor={'#29c6d8'} />
       <App />
     </PersistGate>
   </Provider>

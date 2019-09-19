@@ -1,19 +1,28 @@
 import React, {useEffect, useState} from 'react';
+import {withNavigationFocus} from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Background from '~/components/Background';
 import api from '~/services/api';
 import Appointment from '~/components/Appointment';
 import {Container, Title, List} from './styles';
 
-export default function Main() {
+function Main({isFocused}) {
   const [appointments, setAppointments] = useState([]);
-  useEffect(() => {
-    async function loadAppointments() {
-      const response = await api.get('appointments');
-      setAppointments(response.data);
-    }
+
+  async function loadAppointments() {
+    const response = await api.get('appointments');
+    setAppointments(response.data);
+  }
+
+  /*useEffect(() => {
     loadAppointments();
-  }, []);
+  }, []);*/
+
+  useEffect(() => {
+    if (isFocused) {
+      loadAppointments();
+    }
+  }, [isFocused]);
 
   async function handleCancel(id) {
     const response = await api.delete(`appointments/${id}`);
@@ -51,3 +60,4 @@ Main.navigationOptions = {
     <Icon name={'event'} color={tintColor} size={20} />
   ),
 };
+export default withNavigationFocus(Main);
